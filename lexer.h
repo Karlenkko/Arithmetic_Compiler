@@ -6,15 +6,15 @@ using namespace std;
 
 class Lexer {
 
-   public:
-      Lexer(string s) : flux(s), tete(0), tampon(nullptr) { }
-      ~Lexer() { }
+    public:
+        Lexer(string s) : flux(s), tete(0), tampon(nullptr) { }
+        ~Lexer() { }
 
-      Symbole * Consulter();
-      void Avancer();
-
-   protected:
-      string flux;
-      int tete;
-      Symbole * tampon;
+        Symbole * Consulter();
+        void Avancer();
+        void putSymbol(Symbole * s);
+    protected:
+        string flux;
+        int tete;
+        Symbole * tampon;
 };

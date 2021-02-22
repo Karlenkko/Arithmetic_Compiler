@@ -1,3 +1,4 @@
+#include <iostream>
 #include "state.h"
 
 State0::State0() : State("E0") {}
@@ -12,6 +13,8 @@ State8::State8() : State("E8") {}
 State9::State9() : State("E9") {}
 
 bool State0::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
+    symbole->Affiche();
 	switch (*symbole){
 		case INT:
 			automate.decaler(symbole, new State3);
@@ -30,6 +33,8 @@ bool State0::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State1::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
+    symbole->Affiche();
 	switch (*symbole){
 		case PLUS:
 			automate.decaler(symbole, new State4);
@@ -47,6 +52,7 @@ bool State1::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State2::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	switch (*symbole){
 		case INT:
 			automate.decaler(symbole, new State3);
@@ -66,6 +72,8 @@ bool State2::transition(Automate &automate, Symbole * symbole) {
 
 // regle 5
 bool State3::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
+    symbole->Affiche();
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 1);
 	} else {
@@ -76,6 +84,7 @@ bool State3::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State4::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	switch (*symbole){
 		case INT:
 			automate.decaler(symbole, new State3);
@@ -94,6 +103,7 @@ bool State4::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State5::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	switch (*symbole){
 		case INT:
 			automate.decaler(symbole, new State3);
@@ -112,6 +122,7 @@ bool State5::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State6::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	switch (*symbole) {
 		case PLUS:
 			automate.decaler(symbole, new State4);
@@ -130,6 +141,7 @@ bool State6::transition(Automate &automate, Symbole * symbole) {
 }
 
 bool State7::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	if(*symbole == PLUS || *symbole == CLOSEPAR || *symbole == FIN) {
 		// regle 2
 		automate.reduire(symbole, 3);
@@ -144,6 +156,7 @@ bool State7::transition(Automate &automate, Symbole * symbole) {
 
 // regle 3
 bool State8::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 3);
 	} else {
@@ -155,6 +168,7 @@ bool State8::transition(Automate &automate, Symbole * symbole) {
 
 // regle 4
 bool State9::transition(Automate &automate, Symbole * symbole) {
+    cout<< this->name << endl;
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 3);
 	} else {

@@ -11,9 +11,12 @@ Automate::Automate(string chaine){
 void Automate::run() {
     bool flag = true;
     while (flag) {
-        flag = stateStack.top()->transition(*this, lexer->Consulter());
+        Symbole * s = lexer->Consulter();
         lexer->Avancer();
+        flag = stateStack.top()->transition(*this, s);
     }
+    cout << "result" << endl;
+    symboleStack.top()->Affiche();
 }
 
 void Automate::decaler (Symbole * symbole, State * state) {
@@ -23,27 +26,28 @@ void Automate::decaler (Symbole * symbole, State * state) {
 
 void Automate::reduire (Symbole * symbole, int n) {
 	int val = 0;
-	Symbole calculation[3];
+	Symbole * calculation[3];
 	// depiler
 	for(int i = 0; i < n; ++ i) {
+        delete (stateStack.top());
 		stateStack.pop();
-		calculation[i] = * symboleStack.top();
+		calculation[i] = symboleStack.top();
 		symboleStack.pop();
 	}
-    symbole->Affiche();
 	// calculer val
 	if (n == 1) {
-		val = calculation[0].getVal();
+		val = calculation[0]->getVal();
 	} else if (n == 3) {
-		if (calculation[0] == CLOSEPAR && calculation[2] == OPENPAR) {
-			val = calculation[1].getVal();
-		} else if (calculation[1] == MULT) {
-			val = calculation[0].getVal() * calculation[2].getVal();
-		} else if (calculation[1] == PLUS) {
-			val = calculation[0].getVal() + calculation[2].getVal();
+		if (*calculation[0] == CLOSEPAR && *calculation[2] == OPENPAR) {
+			val = calculation[1]->getVal();
+		} else if (*calculation[1] == MULT) {
+			val = calculation[0]->getVal() * calculation[2]->getVal();
+		} else if (*calculation[1] == PLUS) {
+			val = calculation[0]->getVal() + calculation[2]->getVal();
 		}
 	}
-    cout << val << endl;
 	// empiler la partie gauche
+
 	stateStack.top()->transition(*this, new Expr(val));
+	lexer->putSymbol(symbole);
 }

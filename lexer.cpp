@@ -2,12 +2,10 @@
 
 Symbole * Lexer::Consulter() {
    if (!tampon) {
-
       if (tete==flux.length())
          tampon = new Symbole(FIN);
       else
       {
-
          switch (flux[tete]) {
             case '(':
                tampon = new Symbole(OPENPAR);
@@ -49,3 +47,14 @@ void Lexer::Avancer() {
    tampon = nullptr;
 }
 
+void Lexer::putSymbol(Symbole *s) {
+
+    switch (*s) {
+        case PLUS:
+        case MULT:
+        case OPENPAR:
+        case CLOSEPAR:
+            tampon = s;
+            break;
+    }
+}

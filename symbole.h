@@ -14,7 +14,7 @@ class Symbole {
         virtual ~Symbole() { }
         operator int() const { return ident; }
         virtual void Affiche();
-        virtual int getVal();
+        virtual int getVal() {return -1;}
    protected:
       int ident{};
 };

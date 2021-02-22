@@ -4,7 +4,7 @@
 
 
 int main(void) {
-   string chaine("1+3");
+   string chaine("(3+9)+3*(4+5)");
 
 
    Automate *a = new Automate(chaine);
