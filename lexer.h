@@ -12,7 +12,8 @@ class Lexer {
 
         Symbole * Consulter();
         void Avancer();
-        void putSymbol(Symbole * s);
+        void retournerSymbole(Symbole * s);
+        string getFlux() {return flux;}
     protected:
         string flux;
         int tete;

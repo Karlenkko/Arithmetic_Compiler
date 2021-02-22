@@ -29,8 +29,7 @@ class Entier : public Symbole {
         int valeur;
 };
 
-
-
+// symbole non terminal E
 class Expr : public Symbole {
 	public:
         Expr(int val) : Symbole(EXPR), valeur(val) {}

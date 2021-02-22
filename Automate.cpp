@@ -15,7 +15,7 @@ void Automate::run() {
         lexer->Avancer();
         flag = stateStack.top()->transition(*this, s);
     }
-    cout << "result" << endl;
+    cout << "Le resultat de " << lexer->getFlux() <<" est:" << endl;
     symboleStack.top()->Affiche();
 }
 
@@ -47,7 +47,6 @@ void Automate::reduire (Symbole * symbole, int n) {
 		}
 	}
 	// empiler la partie gauche
-
 	stateStack.top()->transition(*this, new Expr(val));
-	lexer->putSymbol(symbole);
+	lexer->retournerSymbole(symbole);
 }

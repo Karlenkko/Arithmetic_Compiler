@@ -10,6 +10,5 @@ void Entier::Affiche() {
 }
 
 void Expr::Affiche() {
-    Symbole::Affiche();
-    cout<<"("<<valeur<<")";
+    cout << valeur << endl;
 }

@@ -47,14 +47,7 @@ void Lexer::Avancer() {
    tampon = nullptr;
 }
 
-void Lexer::putSymbol(Symbole *s) {
-
-    switch (*s) {
-        case PLUS:
-        case MULT:
-        case OPENPAR:
-        case CLOSEPAR:
-            tampon = s;
-            break;
-    }
+// renvoyer le symbole quand'il s'agit une reduction
+void Lexer::retournerSymbole(Symbole *s) {
+    tampon = s;
 }
