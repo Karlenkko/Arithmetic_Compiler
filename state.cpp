@@ -1,6 +1,15 @@
 #include "state.h"
 
 State0::State0() : State("E0") {}
+State1::State1() : State("E1") {}
+State2::State2() : State("E2") {}
+State3::State3() : State("E3") {}
+State4::State4() : State("E4") {}
+State5::State5() : State("E5") {}
+State6::State6() : State("E6") {}
+State7::State7() : State("E7") {}
+State8::State8() : State("E8") {}
+State9::State9() : State("E9") {}
 
 bool State0::transition(Automate &automate, Symbole * symbole) {
 	switch (*symbole){
@@ -29,9 +38,12 @@ bool State1::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State5);
 			break;
 		case FIN:
-			automate.
-		
-		}
+		    return false;
+        default:
+            automate.decaler(new Symbole(ERREUR), NULL);
+            return false;
+	}
+	return true;
 }
 
 bool State2::transition(Automate &automate, Symbole * symbole) {
@@ -66,7 +78,7 @@ bool State3::transition(Automate &automate, Symbole * symbole) {
 bool State4::transition(Automate &automate, Symbole * symbole) {
 	switch (*symbole){
 		case INT:
-			automate.transition(symbole, new State3);
+			automate.decaler(symbole, new State3);
 			break;
 		case OPENPAR:
 			automate.decaler(symbole, new State2);
@@ -84,7 +96,7 @@ bool State4::transition(Automate &automate, Symbole * symbole) {
 bool State5::transition(Automate &automate, Symbole * symbole) {
 	switch (*symbole){
 		case INT:
-			automate.transition(symbole, new State3);
+			automate.decaler(symbole, new State3);
 			break;
 		case OPENPAR:
 			automate.decaler(symbole, new State2);
@@ -102,13 +114,13 @@ bool State5::transition(Automate &automate, Symbole * symbole) {
 bool State6::transition(Automate &automate, Symbole * symbole) {
 	switch (*symbole) {
 		case PLUS:
-			automate.transition(symbole, new State4);
+			automate.decaler(symbole, new State4);
 			break;
 		case MULT:
-			automate.transition(symbole, new State5);
+			automate.decaler(symbole, new State5);
 			break;
 		case CLOSEPAR:
-			automate.transition(symbole, new State9);
+			automate.decaler(symbole, new State9);
 			break;
 		default:
 			automate.decaler(new Symbole(ERREUR), NULL);
