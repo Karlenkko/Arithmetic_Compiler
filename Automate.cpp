@@ -1,22 +1,27 @@
 #include <iostream>
+#include <regex>
 #include "Automate.h"
 #include "state.h"
 
 using namespace std;
 Automate::Automate(string chaine){
+    string trimmed = regex_replace(chaine, regex("\\s"), "");
     State0 * init = new State0();
     stateStack.push(init);
-    this->lexer = new Lexer(chaine);
+    this->lexer = new Lexer(trimmed);
 }
 void Automate::run() {
     bool flag = true;
+    Symbole * s;
     while (flag) {
-        Symbole * s = lexer->Consulter();
+        s = lexer->Consulter();
         lexer->Avancer();
         flag = stateStack.top()->transition(*this, s);
     }
+    delete s;
     cout << "Le resultat de " << lexer->getFlux() <<" est:" << endl;
     symboleStack.top()->Affiche();
+    cout << endl;
 }
 
 void Automate::decaler (Symbole * symbole, State * state) {
@@ -46,7 +51,22 @@ void Automate::reduire (Symbole * symbole, int n) {
 			val = calculation[0]->getVal() + calculation[2]->getVal();
 		}
 	}
+	for(int i = 0; i < n; i ++) {
+	    delete calculation[i];
+	}
 	// empiler la partie gauche
 	stateStack.top()->transition(*this, new Expr(val));
 	lexer->retournerSymbole(symbole);
+}
+
+Automate::~Automate(){
+    while (!stateStack.empty()) {
+        delete stateStack.top();
+        stateStack.pop();
+    }
+    while (!symboleStack.empty()) {
+        delete symboleStack.top();
+        symboleStack.pop();
+    }
+    delete lexer;
 }

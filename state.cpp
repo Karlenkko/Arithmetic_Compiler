@@ -26,10 +26,11 @@ bool State0::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State1);
 			break;
 		default:
-			automate.decaler(new Symbole(ERREUR), nullptr);
+
 			cout << "Erreur de lecture de ";
 			symbole->Affiche();
             cout << " dans l'etat 0" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
 			return false;
 	}
 	return true;
@@ -48,10 +49,11 @@ bool State1::transition(Automate &automate, Symbole * symbole) {
 		case FIN:
 		    return false;
         default:
-            automate.decaler(new Symbole(ERREUR), nullptr);
+
             cout << "Erreur de lecture de ";
             symbole->Affiche();
             cout << " dans l'etat 1" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
             return false;
 	}
 	return true;
@@ -70,10 +72,11 @@ bool State2::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State6);
 			break;
 		default:
-			automate.decaler(new Symbole(ERREUR), nullptr);
+
             cout << "Erreur de lecture de ";
             symbole->Affiche();
             cout << " dans l'etat 2" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
 			return false;
 	}
 	return true;
@@ -86,10 +89,11 @@ bool State3::transition(Automate &automate, Symbole * symbole) {
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 1);
 	} else {
-		automate.decaler(new Symbole(ERREUR), nullptr);
+
         cout << "Erreur de lecture de ";
         symbole->Affiche();
         cout << " dans l'etat 3" << endl;
+        automate.decaler(new Symbole(ERREUR), nullptr);
 		return false;
 	}
 	return true;
@@ -108,10 +112,11 @@ bool State4::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State7);
 			break;
 		default:
-			automate.decaler(new Symbole(ERREUR), nullptr);
+
             cout << "Erreur de lecture de ";
             symbole->Affiche();
             cout << " dans l'etat 4" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
 			return false;
 	}
 	return true;
@@ -130,10 +135,11 @@ bool State5::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State8);
 			break;
 		default:
-			automate.decaler(new Symbole(ERREUR), nullptr);
+
             cout << "Erreur de lecture de ";
             symbole->Affiche();
             cout << " dans l'etat 5" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
 			return false;
 	}
 	return true;
@@ -152,10 +158,11 @@ bool State6::transition(Automate &automate, Symbole * symbole) {
 			automate.decaler(symbole, new State9);
 			break;
 		default:
-			automate.decaler(new Symbole(ERREUR), nullptr);
+
             cout << "Erreur de lecture de ";
             symbole->Affiche();
             cout << " dans l'etat 6" << endl;
+            automate.decaler(new Symbole(ERREUR), nullptr);
 			return false;
 	}
 	return true;
@@ -169,10 +176,11 @@ bool State7::transition(Automate &automate, Symbole * symbole) {
 	} else if (*symbole == MULT) {
 		automate.decaler(symbole, new State5);
 	} else {
-		automate.decaler(new Symbole(ERREUR), nullptr);
+
         cout << "Erreur de lecture de ";
         symbole->Affiche();
         cout << " dans l'etat 7" << endl;
+        automate.decaler(new Symbole(ERREUR), nullptr);
 		return false;
 	}
 	return true;
@@ -184,10 +192,10 @@ bool State8::transition(Automate &automate, Symbole * symbole) {
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 3);
 	} else {
-		automate.decaler(new Symbole(ERREUR), nullptr);
         cout << "Erreur de lecture de ";
         symbole->Affiche();
         cout << " dans l'etat 8" << endl;
+        automate.decaler(new Symbole(ERREUR), nullptr);
 		return false;
 	}
 	return true;
@@ -199,10 +207,10 @@ bool State9::transition(Automate &automate, Symbole * symbole) {
 	if(*symbole == PLUS || *symbole == MULT || *symbole == CLOSEPAR || *symbole == FIN) {
 		automate.reduire(symbole, 3);
 	} else {
-		automate.decaler(new Symbole(ERREUR), nullptr);
         cout << "Erreur de lecture de ";
         symbole->Affiche();
         cout << " dans l'etat 9" << endl;
+        automate.decaler(new Symbole(ERREUR), nullptr);
 		return false;
 	}
 	return true;

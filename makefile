@@ -2,7 +2,7 @@ ECHO = @echo
 RM = rm
 COMP = g++
 EDL = g++
-CPPFLAGS = ##-ansi -pedantic -Wall -Wextra -std=c++11
+CPPFLAGS = -ansi -pedantic -Wall -Wextra -std=c++11 -g
 PROGS = arithmetic_compiler
 .O = Automate.o lexer.o state.o symbole.o main.o
 all: $(PROGS)
@@ -30,5 +30,5 @@ arithmetic_compiler: $(.O)
 	$(ECHO) "edl de $^"
 	$(COMP) -o $@ $^
 
-efface:
-	rm $(.O) $(PROGS) 
+clean:
+	rm -f $(.O) $(PROGS)

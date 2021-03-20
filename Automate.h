@@ -12,6 +12,7 @@ class Automate {
         void decaler (Symbole * symbole, State * state);
 		void reduire (Symbole * symbole, int n);
 		void run();
+		~Automate();
 	protected:
 		stack <State *> stateStack;
 		stack <Symbole *> symboleStack;

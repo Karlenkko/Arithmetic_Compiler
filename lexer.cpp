@@ -1,11 +1,11 @@
 #include "lexer.h"
-
+#include <iostream>
+using namespace std;
 Symbole * Lexer::Consulter() {
-   if (!tampon) {
-      if (tete==flux.length())
-         tampon = new Symbole(FIN);
-      else
-      {
+   if (tampon == nullptr) {
+      if (tete== (int)flux.length()) {
+          tampon = new Symbole(FIN);
+      } else {
          switch (flux[tete]) {
             case '(':
                tampon = new Symbole(OPENPAR);
@@ -35,7 +35,8 @@ Symbole * Lexer::Consulter() {
                   tampon = new Entier(resultat);
                }
                else {
-                  tampon = new Symbole(ERREUR);
+                   cout << "Symbole illégal: '" << flux[tete] << "'" << endl;
+                   tampon = new Symbole(ERREUR);
                }
          }
       }
